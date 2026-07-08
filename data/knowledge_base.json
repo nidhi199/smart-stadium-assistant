@@ -1,0 +1,56 @@
+{
+  "gates": [
+    {
+      "id": "gate_a",
+      "name": "Gate A",
+      "nearest_sections": [
+        "101",
+        "102",
+        "103"
+      ],
+      "accessible": true,
+      "info": {
+        "en": "Gate A is located on the North side. It is fully accessible.",
+        "es": "La Puerta A está ubicada en el lado norte. Es totalmente accesible.",
+        "hi": "गेट A उत्तर दिशा में स्थित है। यह पूरी तरह से सुलभ है।"
+      }
+    },
+    {
+      "id": "gate_c",
+      "name": "Gate C",
+      "nearest_sections": [
+        "110",
+        "111",
+        "112"
+      ],
+      "accessible": false,
+      "info": {
+        "en": "Gate C is on the East side. For accessible entry, please use Gate A or D.",
+        "es": "La Puerta C está en el lado este. Para entrada accesible, use la Puerta A o D.",
+        "hi": "गेट C पूर्व दिशा में है। सुलभ प्रवेश के लिए कृपया गेट A या D का उपयोग करें।"
+      }
+    }
+  ],
+  "transport": [
+    {
+      "type": "metro",
+      "name": "Stadium Central Metro",
+      "info": {
+        "en": "The Metro runs every 5 minutes after the match. Exit via the South Concourse for the fastest route.",
+        "es": "El metro pasa cada 5 minutos después del partido. Salga por el South Concourse para la ruta más rápida.",
+        "hi": "मैच के बाद मेट्रो हर 5 मिनट में चलती है। सबसे तेज़ रास्ते के लिए साउथ कॉनकोर्स से बाहर निकलें।"
+      }
+    }
+  ],
+  "amenities": [
+    {
+      "type": "restroom",
+      "accessible": true,
+      "info": {
+        "en": "Accessible restrooms are located near Sections 105, 112, and 120.",
+        "es": "Los baños accesibles se encuentran cerca de las secciones 105, 112 y 120.",
+        "hi": "सुलभ शौचालय सेक्शन 105, 112 और 120 के पास स्थित हैं।"
+      }
+    }
+  ]
+}
