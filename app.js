@@ -1,4 +1,3 @@
-import Chart from 'chart.js/auto';
 
 const API_BASE = 'http://localhost:5000/api';
 

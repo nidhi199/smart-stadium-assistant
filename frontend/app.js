@@ -1,4 +1,4 @@
-import Chart from 'chart.js/auto';
+
 
 const API_BASE = 'http://localhost:5000/api';
 
@@ -7,11 +7,11 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-        
+
         const targetId = e.target.getAttribute('data-target');
         e.target.classList.add('active');
         document.getElementById(targetId).classList.add('active');
-        
+
         if (targetId === 'dashboard-panel') {
             loadDashboard();
         }
@@ -40,7 +40,7 @@ async function sendMessage() {
 
     appendMessage(text, 'user');
     chatInput.value = '';
-    
+
     // Disable input while waiting
     chatInput.disabled = true;
     sendBtn.disabled = true;
@@ -103,7 +103,7 @@ function renderCharts(data) {
     // Zone Chart
     const ctxZone = document.getElementById('zone-chart').getContext('2d');
     if (zoneChartInstance) zoneChartInstance.destroy();
-    
+
     zoneChartInstance = new Chart(ctxZone, {
         type: 'bar',
         data: {
@@ -130,7 +130,7 @@ function renderCharts(data) {
     // Gate Flow Chart
     const ctxGate = document.getElementById('gate-chart').getContext('2d');
     if (gateChartInstance) gateChartInstance.destroy();
-    
+
     gateChartInstance = new Chart(ctxGate, {
         type: 'line',
         data: {
@@ -157,7 +157,7 @@ function renderCharts(data) {
 function renderIncidents(incidents) {
     const list = document.getElementById('incidents-list');
     list.innerHTML = '';
-    
+
     if (!incidents || incidents.length === 0) {
         list.innerHTML = '<li>No active incidents.</li>';
         return;
