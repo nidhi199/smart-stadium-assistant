@@ -1,5 +1,5 @@
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://smart-stadium-backend-744568401148.asia-south1.run.app/api';
 
 // Tab Switching Logic
 document.querySelectorAll('.tab-btn').forEach(btn => {
