@@ -23,4 +23,4 @@ EXPOSE 8080
 
 # Command to run the application using Gunicorn for production
 # Fallback to python app.py if gunicorn isn't installed
-CMD ["python", "app.py"]
+CMD ["sh", "-c", "python ../data/generate_seed.py && python app.py"]
