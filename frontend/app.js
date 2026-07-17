@@ -1,6 +1,6 @@
 
 
-const API_BASE = 'https://smart-stadium-backend-744568401148.asia-south1.run.app/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 
 // Tab Switching Logic
 document.querySelectorAll('.tab-btn').forEach(btn => {
