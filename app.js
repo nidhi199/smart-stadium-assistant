@@ -1,5 +1,5 @@
 
-const API_BASE = 'https://smart-stadium-assistant-rsfr.onrender.com/api';
+const API_BASE = 'https://smart-stadium-api-gs2g.onrender.com/api';
 
 // Tab Switching Logic
 document.querySelectorAll('.tab-btn').forEach(btn => {
