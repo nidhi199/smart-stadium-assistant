@@ -1,6 +1,6 @@
 
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE = 'https://smart-stadium-assistant-rsfr.onrender.com/api';
 
 // Tab Switching Logic
 document.querySelectorAll('.tab-btn').forEach(btn => {
