@@ -7,7 +7,7 @@ from llm import chat_with_fan, generate_insight
 
 app = Flask(__name__)
 # Enable CORS for all routes and origins (for dev)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"/api/*": {"origins": ["https://nidhi199.github.io", "http://localhost:8080", "http://127.0.0.1:8080"]}})
 
 DB_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'stadium.db')
 KB_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'knowledge_base.json')
@@ -41,15 +41,21 @@ def get_stadium_data():
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
-    data = request.json
+    data = request.get_json(silent=True)
+    if not data:
+        return jsonify({"error": "Invalid or missing JSON body"}), 400
+
     user_message = data.get('message', '')
-    
-    if not user_message:
+
+    if not isinstance(user_message, str) or not user_message.strip():
         return jsonify({"error": "Message is required"}), 400
-        
+
+    if len(user_message) > 500:
+        return jsonify({"error": "Message too long (max 500 characters)"}), 400
+
     kb = load_knowledge_base()
     kb_context = json.dumps(kb, ensure_ascii=False)
-    
+
     response = chat_with_fan(user_message, kb_context)
     return jsonify({"reply": response})
 

@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Stadium Assistant | World Cup 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
     <header class="app-header">
         <div class="logo">
@@ -16,8 +20,8 @@
             <h1>Smart Stadium <span>Assistant</span></h1>
         </div>
         <nav class="tabs">
-            <button class="tab-btn active" data-target="chat-panel">Fan Chatbot</button>
-            <button class="tab-btn" data-target="dashboard-panel">Operations</button>
+            <button class="tab-btn active" data-target="chat-panel" role="tab" aria-selected="true">Fan Chatbot</button>
+            <button class="tab-btn" data-target="dashboard-panel" role="tab" aria-selected="false">Operations</button>
         </nav>
     </header>
 
@@ -29,17 +33,23 @@
                     <h2>How can I help you today?</h2>
                     <p>Ask about gates, transport, or amenities in English, Spanish, or Hindi.</p>
                 </div>
-                <div class="chat-messages" id="chat-messages">
+                <div class="chat-messages" id="chat-messages" aria-live="polite">
                     <div class="message bot">
                         <div class="message-content">
-                            Hello! I'm your Smart Stadium Assistant. How can I guide you today? / ¡Hola! ¿Cómo puedo ayudarte? / नमस्ते! मैं आपकी कैसे मदद कर सकता हूँ?
+                            Hello! I'm your Smart Stadium Assistant. How can I guide you today? / ¡Hola! ¿Cómo puedo
+                            ayudarte? / नमस्ते! मैं आपकी कैसे मदद कर सकता हूँ?
                         </div>
                     </div>
                 </div>
                 <div class="chat-input-wrapper">
-                    <input type="text" id="chat-input" placeholder="Type your message here..." />
-                    <button id="send-btn" class="primary-btn">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    <input type="text" id="chat-input" placeholder="Type your message here..."
+                        aria-label="Type your message" />
+                    <button id="send-btn" class="primary-btn" aria-label="Send message">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -48,7 +58,7 @@
         <!-- Operations Dashboard Panel -->
         <section id="dashboard-panel" class="panel hidden">
             <div class="dashboard-container">
-                
+
                 <div class="insight-banner">
                     <div class="insight-icon">✨ GenAI Insight</div>
                     <p id="insight-text">Loading insights...</p>
@@ -58,14 +68,16 @@
                     <div class="card chart-card">
                         <h3>Crowd Density by Zone</h3>
                         <div class="chart-wrapper">
-                            <canvas id="zone-chart"></canvas>
+                            <canvas id="zone-chart" role="img"
+                                aria-label="Bar chart showing crowd density by zone"></canvas>
                         </div>
                     </div>
-                    
+
                     <div class="card chart-card">
                         <h3>Gate Entry Flow (per min)</h3>
                         <div class="chart-wrapper">
-                            <canvas id="gate-chart"></canvas>
+                            <canvas id="gate-chart" role="img"
+                                aria-label="Bar chart showing gate entry flow per minute"></canvas>
                         </div>
                     </div>
 
@@ -83,4 +95,5 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script type="module" src="./app.js"></script>
 </body>
+
 </html>
