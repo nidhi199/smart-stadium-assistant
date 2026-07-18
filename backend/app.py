@@ -1,13 +1,26 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 import sqlite3
 import json
 import os
 from llm import chat_with_fan, generate_insight
 
 app = Flask(__name__)
-# Enable CORS for all routes and origins (for dev)
 CORS(app, resources={r"/api/*": {"origins": ["https://nidhi199.github.io", "http://localhost:8080", "http://127.0.0.1:8080"]}})
+
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["200 per day", "50 per hour"],
+    storage_uri="memory://"
+)
+
+REQUIRED_ENV_VARS = ["NVIDIA_NIM_API_KEY"]
+missing_vars = [var for var in REQUIRED_ENV_VARS if not os.environ.get(var)]
+if missing_vars:
+    print(f"WARNING: Missing required environment variables: {missing_vars}. The app will run but AI features will fail.")
 
 DB_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'stadium.db')
 KB_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'knowledge_base.json')
@@ -40,6 +53,7 @@ def get_stadium_data():
     return data
 
 @app.route('/api/chat', methods=['POST'])
+@limiter.limit("10 per minute")
 def chat():
     data = request.get_json(silent=True)
     if not data:
@@ -72,4 +86,5 @@ def insight():
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    debug_mode = os.environ.get('FLASK_DEBUG', 'false').lower() == 'true'
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)

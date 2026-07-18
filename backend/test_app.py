@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 import pytest
 import json
 import sys
@@ -5,12 +6,12 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from app import app
-
+from app import app, limiter
 
 @pytest.fixture
 def client():
     app.config['TESTING'] = True
+    limiter.enabled = False
     with app.test_client() as client:
         yield client
 
