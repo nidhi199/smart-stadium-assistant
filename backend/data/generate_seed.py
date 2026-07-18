@@ -9,6 +9,15 @@ def generate_sqlite_db():
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='zones'")
+    table_exists = cursor.fetchone()
+    if table_exists:
+        cursor.execute("SELECT COUNT(*) FROM zones")
+        if cursor.fetchone()[0] > 0:
+            print("Database already seeded, skipping.")
+            conn.close()
+            return
+
     # Create tables
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS zones (
